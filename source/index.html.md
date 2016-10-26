@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: API Reference kaws
 
 language_tabs:
   - shell
@@ -17,57 +17,31 @@ includes:
 search: true
 ---
 
-# Introduction
+# Introduction 簡介
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+抗癌衛士slate 頁
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+主要用來展示各種API接口
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Wiki: [https://github.com/WYQJ/kaws-all/wiki](https://github.com/WYQJ/kaws-all/wiki)
 
-# Authentication
+# Common Address  常用地址
 
-> To authorize, use this code:
 
-```ruby
-require 'kittn'
+郝思远接口文档：[http://blog.leanote.com/mythhsy ](http://blog.leanote.com/mythhsy)
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+`git需要登陆`
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+git文档：[https://github.com/WYQJ/kaws-all/wiki](https://github.com/WYQJ/kaws-all/wiki)
 
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# APIs-4.30
 
-## Get All Kittens
+## 4.30 API
+> 代码部分因为无法获取所以暂时没有替换，JSON部分已经替换：
 
 ```ruby
 require 'kittn'
@@ -98,39 +72,45 @@ let kittens = api.kittens.get();
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+      "posts": [
+        {
+          "id": "ab0fcb13dafc41dbbfa08948ce73af21",
+          "title": "Ms 女 u u 婆透明",
+          "disp_type": 0,
+          "latest_posted_at": "2016-01-21T18:33:07+08:00",
+          "comment_num": 32,
+          "is_recommended": true,
+          "has_images": false,
+          "is_recent": false,
+          "user": {
+            "userkey": "f5bb73f9a4e64b3091a2e3ddf397e104",
+            "username": "球球丶思密达",
+            "level": 15,
+            "avatar_url": "http://7xk154.com1.z0.glb.clouddn.com/288bf06307fe441ea91db05b1d1578f7",
+            "diseased_state": {
+              "id": 3,
+              "name": "胃癌"
+            }
+          },
+          "share_link": "http://support.kangaiweishi.com/community/ab0fcb13dafc41dbbfa08948ce73af21"
+        }
+      ]
 ```
 
-This endpoint retrieves all kittens.
+### 精品贴列表Boutique post list
 
-### HTTP Request
+`GET /v4/community/posts `
 
-`GET http://example.com/api/kittens`
+注意是V4不是V3
 
 ### Query Parameters
 
-Parameter | Default | Description
+Parameter参数 | Default是否必传 | Description描述
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+recommend  | false | 传整型1为精品贴,不传或其它无效
+hot | flase | 传整型1为热门贴,不传或其它无效
+<aside class="warning">
+注意：两者互斥 不可同时传1
 </aside>
 
 ## Get a Specific Kitten
